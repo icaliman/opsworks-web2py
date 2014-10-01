@@ -6,5 +6,7 @@
 
 2. Add these recipes in "Custom Chef Recipes" of your layer:
 
-a. Setup:       nginx
-b. Deploy:      deploy::web2py
+| Stage  | Recipies |
+| ------------- | ------------- |
+| Setup  | Content Cell  |
+| Deploy | Content Cell  |
