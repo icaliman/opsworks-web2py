@@ -3,6 +3,11 @@ include_recipe "nginx::service"
 
 node[:deploy].each do |application, deploy|
 
+  unless application.downcase.include? "web2py" do
+    Chef::Log.debug("Skipping deploy::web2py for application #{application} as it is not a web2py app")
+    next
+  end
+
   Chef::Log.debug(">>>>>>>>>>>>>>>> Deploy application: #{application}")
 
   opsworks_deploy_dir do
