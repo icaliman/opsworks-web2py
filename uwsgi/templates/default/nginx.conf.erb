@@ -1,0 +1,46 @@
+user <%= node[:uwsgi][:user] %>;
+worker_processes  <%= node[:uwsgi][:worker_processes] %>;
+
+error_log  <%= node[:uwsgi][:log_dir] %>/error.log;
+pid        <%= node[:uwsgi][:pid_file] %>;
+
+events {
+  worker_connections  <%= node[:uwsgi][:worker_connections] %>;
+}
+
+http {
+  include       <%= node[:uwsgi][:dir] %>/mime.types;
+  default_type  application/octet-stream;
+
+  <% node[:uwsgi][:log_format].each do |name, format| %>
+  log_format <%= name %> <%= format %>;
+  <% end %>
+
+  access_log	<%= node[:uwsgi][:log_dir] %>/access.log;
+
+  sendfile on;
+  tcp_nopush on;
+  tcp_nodelay on;
+
+  <% if node[:uwsgi][:keepalive] == "on" %>
+  keepalive_timeout  <%= node[:uwsgi][:keepalive_timeout] %>;
+  <% end %>
+
+  gzip  <%= node[:uwsgi][:gzip] %>;
+  gzip_static  <%= node[:uwsgi][:gzip_static] %>;
+  <% if node[:uwsgi][:gzip] == "on" %>
+  gzip_http_version <%= node[:uwsgi][:gzip_http_version] %>;
+  gzip_comp_level <%= node[:uwsgi][:gzip_comp_level] %>;
+  gzip_proxied <%= node[:uwsgi][:gzip_proxied] %>;
+  gzip_types <%= node[:uwsgi][:gzip_types].join(' ') %>;
+  gzip_vary <%= node[:uwsgi][:gzip_vary] %>;
+  gzip_disable "<%= node[:uwsgi][:gzip_disable] %>";
+  <% end %>
+
+  client_max_body_size <%= node[:uwsgi][:client_max_body_size] %>;
+
+  server_names_hash_bucket_size <%= node[:uwsgi][:server_names_hash_bucket_size] %>;
+
+  include <%= node[:uwsgi][:dir] %>/conf.d/*.conf;
+  include <%= node[:uwsgi][:dir] %>/sites-enabled/*;
+}

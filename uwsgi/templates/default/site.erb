@@ -1,7 +1,7 @@
 server {
     listen          80;
     server_name     <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
-    #access_log  <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>.access.log;
+    #access_log  <%= node[:uwsgi][:log_dir] %>/<%= @application[:domains].first %>.access.log;
 
     ###to enable correct use of response.static_version
     location ~* /(\w+)/static/ {
@@ -41,7 +41,7 @@ server {
 server {
     listen  443 default_server ssl;;
     server_name  <%= @application[:domains].join(" ") %> <%= node[:hostname] %>;
-    #access_log  <%= node[:nginx][:log_dir] %>/<%= @application[:domains].first %>-ssl.access.log;
+    #access_log  <%= node[:uwsgi][:log_dir] %>/<%= @application[:domains].first %>-ssl.access.log;
 
     ssl on;
     ssl_certificate /etc/nginx/ssl/<%= @application[:domains].first %>.crt;

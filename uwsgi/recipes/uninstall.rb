@@ -1,11 +1,11 @@
 if File.exists?("/etc/init.d/nginx")
-  include_recipe "web2py_nginx_uwsgi::service"
+  include_recipe "uwsgi::service"
 
-  service "nginx" do
+  service "uwsgi-emperor" do
     action :stop
   end
 
-  package "nginx" do
+  package "uwsgi" do
     action :remove
   end
 end
