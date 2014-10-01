@@ -8,5 +8,5 @@
 
 | Stage  | Recipies |
 | ------------- | ------------- |
-| Setup  | Content Cell  |
-| Deploy | Content Cell  |
+| Setup  | nginx |
+| Deploy | deploy::web2py |
