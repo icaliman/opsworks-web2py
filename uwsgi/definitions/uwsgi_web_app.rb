@@ -14,7 +14,7 @@ define :uwsgi_web_app, :template => "app.ini.erb" do
         :application => application
     )
     if File.exists?("#{node[:uwsgi][:dir]}/#{application_name}.ini")
-      notifies :restart, "service[uwsgi-emperor]", :delayed
+      notifies :restart, "service[uwsgi]", :delayed
     end
   end
 

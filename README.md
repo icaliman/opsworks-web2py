@@ -8,5 +8,5 @@
 
 | Stage  | Recipies |
 | ------------- | ------------- |
-| Setup  | nginx |
+| Setup  | nginx, uwsgi |
 | Deploy | deploy::web2py |
