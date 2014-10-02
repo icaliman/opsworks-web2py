@@ -1,11 +1,11 @@
-define :uwsgi_web_app, :template => "app.ini.erb" do
+define :uwsgi_web_app, :template => "app.ini.erb", :enable => true do
   include_recipe "uwsgi::service"
 
   application = params[:application]
   application_name = params[:name]
 
-  template "#{node[:uwsgi][:dir]}/#{application_name}.ini" do
-    Chef::Log.debug("Generating Uwsgi configuration file for #{application_name.inspect}")
+  template "#{node[:uwsgi][:dir]}/apps-available/#{application_name}.ini" do
+    Chef::Log.info("Generating uWSGI configuration file for #{application_name.inspect}")
     source params[:template]
     owner "root"
     group "root"
@@ -13,9 +13,13 @@ define :uwsgi_web_app, :template => "app.ini.erb" do
     variables(
         :application => application
     )
-    if File.exists?("#{node[:uwsgi][:dir]}/#{application_name}.ini")
-      notifies :restart, "service[uwsgi]", :delayed
-    end
+  end
+
+  File.symlink("#{node[:uwsgi][:dir]}/apps-available/#{application_name}.ini",
+               "#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini")
+
+  if File.exists?("#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini")
+    notifies :restart, "service[uwsgi]", :delayed
   end
 
 end
