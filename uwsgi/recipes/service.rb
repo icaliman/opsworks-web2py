@@ -1,4 +1,4 @@
 service "uwsgi-emperor" do
-  supports :status => false, :restart => true, :reload => false
+  supports :status => true, :restart => true, :reload => true
   action :nothing
 end

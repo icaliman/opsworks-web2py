@@ -1,4 +1,4 @@
-if File.exists?("/etc/init.d/nginx")
+if File.exists?("/etc/uwsgi")
   include_recipe "uwsgi::service"
 
   service "uwsgi-emperor" do
