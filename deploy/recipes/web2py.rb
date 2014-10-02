@@ -1,6 +1,5 @@
 include_recipe 'deploy'
 include_recipe "nginx::service"
-include_recipe "uwsgi::service"
 
 node[:opsworks][:applications].each do |app|
   application = app[:slug_name]
