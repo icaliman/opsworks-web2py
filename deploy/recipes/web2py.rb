@@ -13,6 +13,8 @@ node[:opsworks][:applications].each do |app|
   application = app[:slug_name]
   deploy = node[:deploy][application]
 
+  next
+
 
   Chef::Log.info ">>>>>>>>>>>>>>>> Deploy application: #{application}"
 
