@@ -14,14 +14,7 @@
 ###
 
 
-default[:uwsgi][:dir]           = "/etc/uwsgi"
-defaulf[:uwsgi][:log_dir]       = "/var/log/uwsgi"
-default[:uwsgi][:user]          = "www-data"
-default[:uwsgi][:group]         = "www-data"
-
-
-default[:uwsgi][:processes]     = 4
-default[:uwsgi][:max_requests]  = 2000
+default[:web2py][:default_application] = nil
 
 
 # case node[:platform_family]
