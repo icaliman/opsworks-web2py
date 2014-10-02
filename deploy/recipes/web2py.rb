@@ -4,7 +4,7 @@ include_recipe "nginx::service"
 node[:deploy].each do |application, deploy|
 
   if !application.downcase.include? "web2py"
-    Chef::Log.debug("Skipping deploy::web2py for application #{application} as it is not a web2py app")
+    Chef::Log.info "Skipping deploy::web2py for application #{application} as it is not a web2py app"
     next
   end
 
