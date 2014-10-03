@@ -31,13 +31,17 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
-  directory "#{deploy[:deploy_to]}/releases" do
-    group deploy[:group]
-    owner deploy[:user]
-    mode "0775"
-    action :create
-    recursive true
+  execute "set releases owner to uWSGI user and group" do
+    command "chown -R #{node[:uwsgi][:user]}:#{node[:uwsgi][:group]} #{deploy[:deploy_to]}/releases"
   end
+
+  # directory "#{deploy[:deploy_to]}/releases" do
+  #   group deploy[:group]
+  #   owner deploy[:user]
+  #   mode "0775"
+  #   action :create
+  #   recursive true
+  # end
 
   # wsgihandler.py must be moved manually to root dir of web2py
   # TODO: move file here
