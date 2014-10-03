@@ -10,6 +10,9 @@ define :uwsgi_web_app, :template => "app.ini.erb", :enable => true do
     owner "root"
     group "root"
     mode 0644
+    if params[:cookbook]
+      cookbook params[:cookbook]
+    end
     variables(
         :application => application
     )
