@@ -31,7 +31,7 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
-  directory "#{deploy[:deploy_to]}" do
+  directory "#{deploy[:deploy_to]}/realises" do
     group deploy[:group]
     owner deploy[:user]
     mode "0775"
