@@ -4,7 +4,13 @@
 # Author:: Ion Caliman <icaliman92@gmail.com>
 #
 
+package "build-essential"
+package "python-dev"
+package "libxml2-dev"
+package "python-pip"
+package "unzip"
 package "uwsgi"
+package "uwsgi-plugin-python"
 
 directory node[:uwsgi][:dir] do
   owner 'root'
