@@ -31,6 +31,14 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
+  directory "#{deploy[:deploy_to]}" do
+    group node[:uwsgi][:group]
+    owner node[:uwsgi][:user]
+    mode "0775"
+    action :nothing
+    recursive true
+  end
+
   # wsgihandler.py must be moved manually to root dir of web2py
   # TODO: move file here
   # if File.exists?("#{deploy[:current_path]}/handlers/wsgihandler.py")

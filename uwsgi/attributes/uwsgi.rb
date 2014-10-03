@@ -16,6 +16,8 @@
 
 default[:uwsgi][:dir]           = "/etc/uwsgi"
 default[:uwsgi][:log_dir]       = "/var/log/uwsgi"
+default[:uwsgi][:user]          = "www-data"
+default[:uwsgi][:group]         = "www-data"
 
 
 default[:uwsgi][:processes]     = 4
