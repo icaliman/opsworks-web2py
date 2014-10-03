@@ -14,7 +14,8 @@ define :uwsgi_web_app, :template => "app.ini.erb", :enable => true do
       cookbook params[:cookbook]
     end
     variables(
-        :application => application
+        :application => application,
+        :application_name => application_name
     )
   end
 

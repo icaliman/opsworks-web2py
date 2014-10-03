@@ -1,6 +1,6 @@
 [uwsgi]
 
-socket = /tmp/web2py.socket
+socket = /tmp/<%= @application_name %>.socket
 pythonpath = <%= @application[:absolute_document_root] %>
 mount = /=wsgihandler:application
 processes = <%= node[:uwsgi][:processes] %>
