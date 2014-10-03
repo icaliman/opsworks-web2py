@@ -31,10 +31,12 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
-  if File.exists?("#{deploy[:current_path]}/handlers/wsgihandler.py")
-    FileUtils.cp("#{deploy[:current_path]}/handlers/wsgihandler.py",
-                 "#{deploy[:current_path]}/wsgihandler.py")
-  end
+  # wsgihandler.py must be moved manually to root dir of web2py
+  # TODO: move file here
+  # if File.exists?("#{deploy[:current_path]}/handlers/wsgihandler.py")
+  #   FileUtils.cp("#{deploy[:current_path]}/handlers/wsgihandler.py",
+  #                "#{deploy[:current_path]}/wsgihandler.py")
+  # end
 
   uwsgi_web_app application do
     application deploy
