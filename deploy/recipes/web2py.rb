@@ -2,6 +2,8 @@ include_recipe 'deploy'
 include_recipe 'nginx::service'
 include_recipe 'uwsgi::service'
 
+require 'fileutils'
+
 node[:opsworks][:applications].each do |app|
   application = app[:slug_name]
   deploy = node[:deploy][application]
@@ -29,9 +31,9 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
-  if !File.exists?("#{deploy[:absolute_document_root]}/wsgihandler.py")
-    File.symlink("#{deploy[:absolute_document_root]}/handlers/wsgihandler.py",
-                 "#{deploy[:absolute_document_root]}/wsgihandler.py")
+  if File.exists?("#{deploy[:current_path]}/handlers/wsgihandler.py")
+    FileUtils.cp("#{deploy[:current_path]}/handlers/wsgihandler.py",
+                 "#{deploy[:current_path]}/wsgihandler.py")
   end
 
   uwsgi_web_app application do
