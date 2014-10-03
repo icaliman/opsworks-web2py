@@ -29,6 +29,11 @@ node[:opsworks][:applications].each do |app|
     cookbook "nginx"
   end
 
+  if !File.exists?("#{deploy[:absolute_document_root]}/wsgihandler.py")
+    File.symlink("#{deploy[:absolute_document_root]}/handlers/wsgihandler.py",
+                 "#{deploy[:absolute_document_root]}/wsgihandler.py")
+  end
+
   uwsgi_web_app application do
     application deploy
     cookbook "uwsgi"
