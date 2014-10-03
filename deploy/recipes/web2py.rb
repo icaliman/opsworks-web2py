@@ -32,10 +32,10 @@ node[:opsworks][:applications].each do |app|
   end
 
   directory "#{deploy[:deploy_to]}" do
-    group node[:uwsgi][:group]
-    owner node[:uwsgi][:user]
+    group deploy[:group]
+    owner deploy[:user]
     mode "0775"
-    action :nothing
+    action :create
     recursive true
   end
 
