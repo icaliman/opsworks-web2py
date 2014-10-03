@@ -24,5 +24,7 @@ define :uwsgi_web_app, :template => "app.ini.erb", :enable => true do
                  "#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini")
   end
 
-  notifies :restart, "service[uwsgi]", :delayed
+  service "uwsgi" do
+    action :restart
+  end
 end
