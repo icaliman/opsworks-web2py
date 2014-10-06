@@ -14,7 +14,7 @@
 
 ## Setting admin password (optional)
 
-1. Set environment variable <b>ADMIN_PASSWORD</b> with password on OpsWorks admin interface
+1. Set environment variable <b>ADMIN_PASSWORD</b> with password in OpsWorks admin interface
 
 2. Create file <b>before_symlink.rb</b> in the <b>deploy</b> directory of your project with this content:
 
