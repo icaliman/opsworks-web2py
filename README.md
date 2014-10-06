@@ -1,5 +1,7 @@
 # opsworks-web2py
 
+Recipes to deploy web2py apps on OpsWorks (EC2).
+
 ## Requirements:
 
 1. The git repository with your app must contain all web2py source code.
