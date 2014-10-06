@@ -2,9 +2,11 @@
 
 ## Requirements:
 
-1. Because OpsWorks doesn't have web2py application type the application you want to deploy must contain "web2py" in name
+1. The git repository with your app must contain all web2py source code.
 
-2. Add these recipes in "Custom Chef Recipes" of your layer:
+2. Because OpsWorks doesn't have web2py application type the application you want to deploy must contain "web2py" in name
+
+3. Add these recipes in "Custom Chef Recipes" of your layer:
 
 | Stage  | Recipies |
 | ------------- | ------------- |
