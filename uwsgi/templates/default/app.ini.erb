@@ -16,6 +16,6 @@ reload-on-rss = 192
 uid = <%= node[:uwsgi][:user] %>
 gid = <%= node[:uwsgi][:group] %>
 <% if node[:web2py][:default_application] %>
-cron = 0 0 -1 -1 -1 python <%= @application[:absolute_document_root] %>/web2py.py -Q -S <%= node[:web2py][:default_application] %> -M -R scripts/sessions2trash.py -A -o
+cron = 0 0 -1 -1 -1 python <%= @application[:absolute_document_root] %>web2py.py -Q -S <%= node[:web2py][:default_application] %> -M -R scripts/sessions2trash.py -A -o
 <% end %>
 no-orphans = true
