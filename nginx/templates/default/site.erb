@@ -5,7 +5,7 @@ server {
 
     ###to enable correct use of response.static_version
     location ~* ^/(\w+)/static(?:/_[\d]+\.[\d]+\.[\d]+)?/(.*)$ {
-        root <%= @application[:absolute_document_root] %>applications/$1/static/$2;
+        alias <%= @application[:absolute_document_root] %>applications/$1/static/$2;
         expires max;
         ### if you want to use pre-gzipped static files (recommended)
         ### check scripts/zip_static_files.py and remove the comments
@@ -72,7 +72,7 @@ server {
     }
     ###to enable correct use of response.static_version
     location ~* ^/(\w+)/static(?:/_[\d]+\.[\d]+\.[\d]+)?/(.*)$ {
-        root <%= @application[:absolute_document_root] %>applications/$1/static/$2;
+        alias <%= @application[:absolute_document_root] %>applications/$1/static/$2;
         expires max;
         ### if you want to use pre-gzipped static files (recommended)
         ### check scripts/zip_static_files.py and remove the comments
