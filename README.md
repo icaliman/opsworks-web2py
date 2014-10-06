@@ -16,7 +16,7 @@
 
 1. Set environment variable ADMIN_PASSWORD with password on OpsWorks admin interface
 
-2. Create file <i><b>deploy/before_symlink.rb</b></i> in the root directory of your project with this content:
+2. Create file <i><b>before_symlink.rb</b></i> in the <i><b>deploy/</b></i> directory of your project with this content:
 
 ```ruby
 if new_resource.environment["ADMIN_PASSWORD"]
