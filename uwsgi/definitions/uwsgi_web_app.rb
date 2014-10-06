@@ -17,11 +17,11 @@ define :uwsgi_web_app, :template => "app.ini.erb", :enable => true do
         :application => application,
         :application_name => application_name
     )
+  end
 
-    if !File.symlink?("#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini")
-      File.symlink("#{node[:uwsgi][:dir]}/apps-available/#{application_name}.ini",
-                   "#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini")
-    end
+  execute "Enable uwsgi app: #{application_name}" do
+    command "ln -s #{node[:uwsgi][:dir]}/apps-available/#{application_name}.ini #{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini"
+    not_if do File.symlink?("#{node[:uwsgi][:dir]}/apps-enabled/#{application_name}.ini") end
   end
 
   service "uwsgi" do
