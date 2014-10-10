@@ -12,4 +12,4 @@
 #normal[:nginx][:gzip_static] = 'off'
 
 
-normal[:nginx][:serve_static] = false
+normal[:nginx][:serve_static] = true
